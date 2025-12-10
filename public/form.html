@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Contact Form</title>
+</head>
+<body>
+  <!-- This hidden form helps Netlify detect the form during build -->
+  <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+    <input type="text" name="name" />
+    <input type="tel" name="phone" />
+    <input type="email" name="email" />
+    <input type="text" name="event-type" />
+    <input type="date" name="event-date" />
+    <input type="text" name="location" />
+    <textarea name="message"></textarea>
+  </form>
+</body>
+</html>
+
