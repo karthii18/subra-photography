@@ -280,7 +280,7 @@ function ContactForm() {
 
             {formStatus === 'error' && (
               <div className="form-message error">
-                ❌ Sorry, there was an error sending your message. Please try again or contact us directly at <a href="mailto:karthisri1229@gmail.com">karthisri1229@gmail.com</a> or <a href="tel:+919876543210">+91 98765 43210</a>.
+                ❌ Sorry, there was an error sending your message. Please try again or contact us directly at <a href="mailto:karthisri1229@gmail.com">karthisri1229@gmail.com</a> or <a href="tel:+918300473788">+91 83004 73788</a>.
               </div>
             )}
 

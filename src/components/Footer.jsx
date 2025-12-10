@@ -27,32 +27,12 @@ function Footer() {
             <h4>Contact</h4>
             <ul>
               <li>
-                <a href="tel:+919876543210">📞 +91 98765 43210</a>
-              </li>
-              <li>
-                <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer">
-                  💬 WhatsApp
-                </a>
+                <a href="tel:+918300473788">📞 +91 83004 73788</a>
               </li>
               <li>
                 <a href="mailto:karthisri1229@gmail.com">✉️ karthisri1229@gmail.com</a>
               </li>
             </ul>
-          </div>
-
-          <div className="footer-section">
-            <h4>Follow Us</h4>
-            <div className="social-links">
-              <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-                Facebook
-              </a>
-              <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                Instagram
-              </a>
-              <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-                Twitter
-              </a>
-            </div>
           </div>
         </div>
 

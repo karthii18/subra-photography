@@ -29,6 +29,17 @@
   width: 100%;
 }
 
+.hero-logo {
+  margin-bottom: 20px;
+  animation: fadeInUp 1s ease 0.1s both;
+}
+
+.logo-img {
+  height: 60px;
+  width: auto;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+}
+
 .hero-title {
   font-size: 4rem;
   font-weight: 700;
@@ -136,6 +147,10 @@
   .hero-buttons .btn {
     width: 100%;
     max-width: 300px;
+  }
+
+  .logo-img {
+    height: 45px;
   }
 }
 
