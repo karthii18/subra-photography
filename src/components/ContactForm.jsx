@@ -1,15 +1,90 @@
 import React, { useState } from 'react'
+import emailjs from '@emailjs/browser'
 import './ContactForm.css'
 
 function ContactForm() {
   const [formStatus, setFormStatus] = useState('idle') // idle, submitting, success, error
+
+  // EmailJS Configuration - Replace these with your actual values
+  // Get these from: https://dashboard.emailjs.com/
+  const EMAILJS_SERVICE_ID = 'service_nf48gsk' // Your EmailJS Service ID
+  const EMAILJS_TEMPLATE_ID = 'template_4l72jme' // Your EmailJS Template ID
+  const EMAILJS_PUBLIC_KEY = '98w3h1jCvK2eCeqK4' // Your EmailJS Public Key
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     setFormStatus('submitting')
     
     const form = e.target
-    const formData = new FormData(form)
+    
+    // Format event date for email
+    const eventDateInput = form.querySelector('[name="event-date"]').value
+    let formattedDate = eventDateInput || 'Not specified'
+    if (eventDateInput) {
+      formattedDate = new Date(eventDateInput).toLocaleDateString('en-IN', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      })
+    }
+
+    // Format event type for email
+    const eventTypeMap = {
+      'wedding': 'Wedding',
+      'pre-wedding': 'Pre-Wedding Shoot',
+      'event': 'Event',
+      'portrait': 'Portrait',
+      'maternity': 'Maternity/Baby',
+      'other': 'Other'
+    }
+    const eventTypeValue = form.querySelector('[name="event-type"]').value
+    const formattedEventType = eventTypeMap[eventTypeValue] || eventTypeValue || 'Not specified'
+
+    // Prepare template parameters for EmailJS
+    // Note: Variable names must match your EmailJS template placeholders
+    const templateParams = {
+      from_name: form.querySelector('[name="name"]').value,
+      from_phone: form.querySelector('[name="phone"]').value,
+      from_email: form.querySelector('[name="email"]').value,
+      name: form.querySelector('[name="name"]').value, // For {{name}} in template
+      email: form.querySelector('[name="email"]').value, // For {{email}} in template
+      event_type: formattedEventType,
+      event_date: formattedDate,
+      location: form.querySelector('[name="location"]').value || 'Not specified',
+      message: form.querySelector('[name="message"]').value || 'No message provided',
+      // Additional formatted fields for better email display
+      formatted_date: formattedDate,
+      formatted_event_type: formattedEventType,
+      reply_to: form.querySelector('[name="email"]').value
+    }
+
+    try {
+      // Send email using EmailJS
+      const response = await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        templateParams,
+        EMAILJS_PUBLIC_KEY
+      )
+
+      if (response.status === 200) {
+        setFormStatus('success')
+        form.reset()
+        setTimeout(() => setFormStatus('idle'), 5000)
+      } else {
+        throw new Error('Email sending failed')
+      }
+    } catch (error) {
+      console.error('EmailJS Error:', error)
+      setFormStatus('error')
+      setTimeout(() => setFormStatus('idle'), 8000)
+    }
+
+    /* ============================================
+       NETLIFY FORMS CODE - COMMENTED OUT
+       (Keeping as backup, but using EmailJS now)
+       ============================================
     
     // Check if we're in development mode (localhost)
     const isDevelopment = window.location.hostname === 'localhost' || 
@@ -18,17 +93,12 @@ function ContactForm() {
     
     // Simulate form submission in development mode
     if (isDevelopment) {
-      // Simulate network delay
       await new Promise(resolve => setTimeout(resolve, 1500))
-      
-      // Log form data to console for testing
       const formValues = {}
       formData.forEach((value, key) => {
         formValues[key] = value
       })
       console.log('Form submitted (development mode):', formValues)
-      
-      // Show success message with note
       setFormStatus('dev-success')
       form.reset()
       setTimeout(() => setFormStatus('idle'), 6000)
@@ -68,6 +138,8 @@ function ContactForm() {
       setFormStatus('error')
       setTimeout(() => setFormStatus('idle'), 8000)
     }
+    
+    ============================================ */
   }
 
   return (
@@ -81,22 +153,33 @@ function ContactForm() {
         <div className="contact-wrapper">
           <form 
             name="contact" 
-            method="POST" 
-            action="/"
-            data-netlify="true" 
-            data-netlify-honeypot="bot-field"
             onSubmit={handleSubmit}
             className="contact-form"
           >
-            {/* Hidden field for Netlify Forms */}
-            <input type="hidden" name="form-name" value="contact" />
+            {/* NETLIFY FORMS CODE - COMMENTED OUT (Using EmailJS now) */}
+            {/* 
+            <form 
+              name="contact" 
+              method="POST" 
+              action="/"
+              data-netlify="true" 
+              data-netlify-honeypot="bot-field"
+              onSubmit={handleSubmit}
+              className="contact-form"
+            >
+            */}
             
-            {/* Honeypot field for spam protection */}
+            {/* Hidden field for Netlify Forms - COMMENTED OUT */}
+            {/* <input type="hidden" name="form-name" value="contact" /> */}
+            
+            {/* Honeypot field for spam protection - COMMENTED OUT */}
+            {/* 
             <p className="hidden">
               <label>
                 Don't fill this out if you're human: <input name="bot-field" />
               </label>
             </p>
+            */}
 
             <div className="form-group">
               <label htmlFor="name">Name *</label>
@@ -167,13 +250,12 @@ function ContactForm() {
             </div>
 
             <div className="form-group">
-              <label htmlFor="message">Message *</label>
+              <label htmlFor="message">Message</label>
               <textarea 
                 id="message" 
                 name="message" 
-                required 
                 rows="5"
-                placeholder="Tell us about your photography needs..."
+                placeholder="Tell us about your photography needs... (Optional)"
               ></textarea>
             </div>
 
@@ -183,6 +265,8 @@ function ContactForm() {
               </div>
             )}
 
+            {/* Dev success message - COMMENTED OUT (EmailJS works in dev too) */}
+            {/* 
             {formStatus === 'dev-success' && (
               <div className="form-message success">
                 ✅ <strong>Test Mode:</strong> Form submitted successfully! (This is a simulation - actual emails will be sent when deployed to Netlify)
@@ -192,6 +276,7 @@ function ContactForm() {
                 </small>
               </div>
             )}
+            */}
 
             {formStatus === 'error' && (
               <div className="form-message error">
