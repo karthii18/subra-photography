@@ -235,6 +235,7 @@ function ContactForm() {
                   id="event-date" 
                   name="event-date" 
                   placeholder="Select date"
+                  min={new Date().toISOString().split('T')[0]}
                 />
               </div>
 

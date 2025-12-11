@@ -17,8 +17,8 @@ function Portfolio() {
     { id: 2, category: 'weddings', image: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=800&q=80', title: 'Bridal Portraits' },
     { id: 3, category: 'weddings', image: 'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=800&q=80', title: 'Reception' },
     { id: 4, category: 'events', image: 'https://images.unsplash.com/photo-1511578314322-379afb476865?w=800&q=80', title: 'Corporate Event' },
-    { id: 5, category: 'events', image: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=800&q=80', title: 'Birthday Celebration' },
-    { id: 6, category: 'events', image: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800&q=80', title: 'Festival' },
+    { id: 5, category: 'events', image: 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=800&q=80', title: 'Birthday Celebration' },
+    { id: 6, category: 'events', image: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=800&q=80', title: 'Festival' },
     { id: 7, category: 'portraits', image: 'https://images.unsplash.com/photo-1511895426328-dc8714191300?w=800&q=80', title: 'Family Portrait' },
     { id: 8, category: 'portraits', image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=800&q=80', title: 'Individual Portrait' },
     { id: 9, category: 'portraits', image: 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=800&q=80', title: 'Professional Headshot' }

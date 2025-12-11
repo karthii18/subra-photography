@@ -43,8 +43,8 @@ function About() {
           </div>
           <div className="about-image">
             <img 
-              src="https://images.unsplash.com/photo-1606983340126-99ab4feaa64a?w=600&q=80" 
-              alt="Photographer at work" 
+              src="https://static.vecteezy.com/system/resources/previews/068/837/068/non_2x/illustration-of-south-indian-wedding-couple-png.png" 
+              alt="Tamil Nadu Cultural Hindu Marriage" 
             />
           </div>
         </div>
