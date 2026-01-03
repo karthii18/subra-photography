@@ -30,7 +30,7 @@ function Footer() {
                 <a href="tel:+919443994839">📞 +91 9443994839</a>
               </li>
               <li>
-                <a href="mailto:subradigital@gmail.com">✉️ subradigital@gmail.com</a>
+                <a href="mailto:kumareson1999@gmail.com">✉️ kumareson1999@gmail.com</a>
               </li>
             </ul>
           </div>
